@@ -4,7 +4,7 @@ const Description = () => {
   return (
     <DescriptionStyled>
       <div className="box-image">
-        <img src="src\assets\images\image-1.jpeg" alt="" />
+        <img src="\images\image-1.jpeg" alt="" />
       </div>
       <section className="desc-box">
         <h1>15 anos da Victória</h1>

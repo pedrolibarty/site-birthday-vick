@@ -1,0 +1,63 @@
+$flower-size: 40px;
+$flower-colors: #fd8, #e96;
+$flower-speed: 5s;
+
+$flower-petal: nth($flower-colors, 1);
+$flower-center: nth($flower-colors, 2);
+
+$flower-segment: $flower-size / 10;
+$flower-dot-size: $flower-segment * 4;
+
+@keyframes flower {
+  0% {
+    transform: rotateZ(0deg);
+    box-shadow:
+      white 0 0 15px 0,
+      $flower-petal (-3 * $flower-segment) (-3 * $flower-segment) 0 $flower-segment,
+      $flower-petal ( 3 * $flower-segment) (-3 * $flower-segment) 0 $flower-segment,
+      $flower-petal ( 3 * $flower-segment) ( 3 * $flower-segment) 0 $flower-segment,
+      $flower-petal (-3 * $flower-segment) ( 3 * $flower-segment) 0 $flower-segment;
+  }
+  50% {
+    transform: rotateZ(1080deg);
+    box-shadow:
+      white 0 0 15px 0,
+      $flower-petal ( 3 * $flower-segment) ( 3 * $flower-segment) 0 $flower-segment,
+      $flower-petal (-3 * $flower-segment) ( 3 * $flower-segment) 0 $flower-segment,
+      $flower-petal (-3 * $flower-segment) (-3 * $flower-segment) 0 $flower-segment,
+      $flower-petal ( 3 * $flower-segment) (-3 * $flower-segment) 0 $flower-segment;
+  }
+}
+
+body {
+  text-align: center;
+  padding: 50px;
+}
+
+.flower {
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+.flower:not(:required) {
+  overflow: hidden;
+  position: relative;
+  text-indent: -9999px;
+
+  display: inline-block;
+  width: $flower-dot-size;
+  height: $flower-dot-size;
+
+  background: $flower-center;
+  border-radius: 100%;
+
+  box-shadow:
+    white 0 0 15px 0,
+    $flower-petal (-3 * $flower-segment) (-3 * $flower-segment) 0 $flower-segment,
+    $flower-petal ( 3 * $flower-segment) (-3 * $flower-segment) 0 $flower-segment,
+    $flower-petal ( 3 * $flower-segment) ( 3 * $flower-segment) 0 $flower-segment,
+    $flower-petal (-3 * $flower-segment) ( 3 * $flower-segment) 0 $flower-segment;
+
+  animation: flower $flower-speed infinite ease-in-out;
+  transform-origin: 50% 50%;
+}

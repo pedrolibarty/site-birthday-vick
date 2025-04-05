@@ -87,11 +87,30 @@ gap: 20px;
     width: 30px;
     height: 30px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     background-color: transparent;
 
     border-radius: 10px;
 
     border: 2px solid var(--color-pink);
+
+    cursor: pointer;
+}
+
+.check img {
+    width: 80%;
+    height: 80%;
+}
+
+.check.ativo {
+    background-color: var(--color-green);
+}
+
+.check.inativo {
+    background-color: var(--color-red);
 }
 
 button {

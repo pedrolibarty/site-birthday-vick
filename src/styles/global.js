@@ -6,6 +6,8 @@ export const Global = createGlobalStyle`
     --color-white: #FFFFFF;
     --color-black: #000000;
     --color-blur: #DEC6C0;
+	--color-green: #52DC91;
+	--color-red: #D64550;
     --font-sacramento: "Sacramento", cursive;
     --font-poppins: "Poppins", sans-serif;
 }
