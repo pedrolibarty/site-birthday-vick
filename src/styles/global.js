@@ -2,9 +2,12 @@ import { createGlobalStyle } from "styled-components";
 
 export const Global = createGlobalStyle`
 :root{
-    --color-pink: 
-    --color-white: #ffffff;
+    --color-pink: #EDD2CB;
+    --color-white: #FFFFFF;
     --color-black: #000000;
+    --color-blur: #DEC6C0;
+    --font-sacramento: "Sacramento", cursive;
+    --font-poppins: "Poppins", sans-serif;
 }
 
 html,
@@ -138,10 +141,7 @@ table {
 	border-spacing: 0;
 }
 
-body,
-input,
-button,
-textarea {
-	font-family: 'Roboto', sans-serif;;
+body{
+    background-color: var(--color-pink);
 }
 `;
