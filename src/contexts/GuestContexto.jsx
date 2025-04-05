@@ -1,4 +1,5 @@
 import React, { Children, createContext, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 export const GuestContext = createContext()
@@ -10,19 +11,24 @@ export const GuestProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
-  const api = 'http://localhost:3000/api/'
+  const api = 'https://api-birthday-vic.vercel.app/api/'
 
   const getCompanion = async (id_guest) => {
     try {
-      const res = await fetch(`${api}companions/${id_guest}`)
-      const data = await res.json()
-      console.log(data)
-      setCompanions(data)
-      setOriginCompanions(data)
-      setLoading(false)
+      const res = await fetch(`${api}companions/guest`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ id_guest })
+      });
+      const data = await res.json();
+      setCompanions(data);
+      setOriginCompanions(data);
+      setLoading(false);
     } catch (error) {
-      console.error('Erro ao buscar convidados', error)
-      navigate("/error")
+      console.error('Erro ao buscar convidados', error);
+      navigate("/error");
     }
   }
 
@@ -32,10 +38,18 @@ export const GuestProvider = ({ children }) => {
       return origin && origin.status !== comp.status
     })
 
-    if (changed.length === 0) return console.log('Nenhuma alteração')
+    if (changed.length === 0) return toast('Presenças atualizadas!', {
+      duration: 4000,
+      position: 'top-right',
+      icon: '🌸',
+      style: {
+        background: '#FFFFFF',
+        color: '#EDD2CB',
+      },
+    });
 
     try {
-      const res = await fetch(`${api}companions`, {
+      const res = await fetch(`${api}update-companions`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -43,10 +57,26 @@ export const GuestProvider = ({ children }) => {
         body: JSON.stringify(changed),
       })
 
-      const result = await res.json()
-      console.log(result)
+      await res.json()
+      toast('Presenças atualizadas!', {
+        duration: 4000,
+        position: 'top-right',
+        icon: '🌸',
+        style: {
+          background: '#FFFFFF',
+          color: '#EDD2CB',
+        },
+      });
     } catch (error) {
-      console.error(error)
+      toast('Ocorreu um erro!', {
+        duration: 4000,
+        position: 'top-right',
+        icon: '⚠️',
+        style: {
+          background: '#FFFFFF',
+          color: '#EDD2CB',
+        },
+      });
     }
   }
 
