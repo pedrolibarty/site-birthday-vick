@@ -24,7 +24,7 @@ export const GuestProvider = ({ children }) => {
       });
       const data = await res.json();
       
-      if (data[0]) {
+      if (data[0] != undefined) {
         navigate("/error");
         return;
       }
