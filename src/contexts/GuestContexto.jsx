@@ -23,8 +23,10 @@ export const GuestProvider = ({ children }) => {
         body: JSON.stringify({ id_guest })
       });
       const data = await res.json();
+
+      console.log(data[0] === undefined)
       
-      if (data[0] != undefined) {
+      if (data[0] === undefined) {
         navigate("/error");
         return;
       }
