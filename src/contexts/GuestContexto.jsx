@@ -24,7 +24,7 @@ export const GuestProvider = ({ children }) => {
       });
       const data = await res.json();
 
-      console.log(data)
+      console.log(data.length())
       
       if (data.length() === 0) {
         navigate("/error");
