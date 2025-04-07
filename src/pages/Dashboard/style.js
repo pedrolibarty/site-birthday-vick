@@ -100,6 +100,7 @@ export const DashboardStyled = styled.section`
 
   #line-locate {
     align-items: flex-start;
+    text-align: start;
   }
 
   @media (min-width: 910px) {

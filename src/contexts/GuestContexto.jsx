@@ -23,6 +23,12 @@ export const GuestProvider = ({ children }) => {
         body: JSON.stringify({ id_guest })
       });
       const data = await res.json();
+      
+      if (data.length() === 0) {
+        navigate("/error");
+        return;
+      }
+
       setCompanions(data);
       setOriginCompanions(data);
       setLoading(false);
