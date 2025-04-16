@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 export const GuestContext = createContext()
 
 export const GuestProvider = ({ children }) => {
+  const [guests, setGuests] = useState([])
   const [companions, setCompanions] = useState([])
   const [originCompanions, setOriginCompanions] = useState([])
   const [loading, setLoading] = useState(true)
@@ -12,6 +13,25 @@ export const GuestProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const api = 'https://api-birthday-vic.vercel.app/api/'
+
+  const getGuests = async () => {
+    try {
+      const res = await fetch(`${api}guests`, {
+        method: "GET"
+      });
+  
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+  
+      const data = await res.json();
+      setGuests(data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Erro ao buscar convidados', error);
+      navigate("/error");
+    }
+  }
 
   const getCompanion = async (id_guest) => {
     try {
@@ -88,6 +108,8 @@ export const GuestProvider = ({ children }) => {
         setCompanions,
         updateCompanion,
         loading,
+        getGuests,
+        guests
       }}
     >
       {children}

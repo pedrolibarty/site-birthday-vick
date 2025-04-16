@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Main from '../pages/Main'
 import Error from '../pages/Error'
+import Manager from '../pages/Manager'
 
 export default function AppRoutes() {
   return (
@@ -8,6 +9,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/guest/:id_guest" element={<Main />} />
       <Route path='/error' element={<Error />} />
+      <Route path='/admin' element={<Manager />} />
       <Route path='*' element={<Error />} />
     </Routes>
   )
